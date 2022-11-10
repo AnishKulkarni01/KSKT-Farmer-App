@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.firebase_signin">
    <application
-        android:label="crop_doctor"
+        android:label="kskt-farmer"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
