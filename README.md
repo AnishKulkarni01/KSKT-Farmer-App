@@ -1,6 +1,4 @@
-# crop_doctor
-
-An app that can detect diseases on crops
+# KSKT-farmer-app
 
 ## Getting Started
 
