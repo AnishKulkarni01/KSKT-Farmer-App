@@ -1,4 +1,4 @@
-package com.example.crop_doctor
+package com.example.firebase_signin
 
 import io.flutter.embedding.android.FlutterActivity
 

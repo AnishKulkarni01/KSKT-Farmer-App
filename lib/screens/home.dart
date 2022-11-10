@@ -23,7 +23,6 @@ class _HomeState extends State<Home> {
   // }
 
 
-
   Color buttonColor = AppColor.buttonColorLight;
   double buttonFontSize = 28;
   double buttonWidth = 300;
@@ -47,8 +46,8 @@ class _HomeState extends State<Home> {
 
   Widget _builderFunction(BuildContext context, AsyncSnapshot snapshot) {
 
-    var arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    String crop = arguments["crop"];
+    // var arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    // String crop = arguments["crop"];
 
     Widget child;
 
@@ -100,7 +99,7 @@ class _HomeState extends State<Home> {
                         Navigator.pop(context);
                       },
                     ),
-                    title: Text((crop=="tomato")?appStrings!.tomato:(crop=="millet_ear")?appStrings!.milletEar:appStrings!.milletLeaf),
+                    title: Text("hemlo"),//00Text((crop=="tomato")?appStrings!.tomato:(crop=="millet_ear")?appStrings!.milletEar:appStrings!.milletLeaf),
                     backgroundColor : Colors.green,
                   ),
                   Spacer(),
@@ -109,7 +108,7 @@ class _HomeState extends State<Home> {
                   ElevatedButton.icon(
 
                     onPressed: () async {
-                      await Navigator.pushNamed(context, "/capture_image", arguments: {"crop":crop});
+                      await Navigator.pushNamed(context, "/capture_image", arguments: {"crop":"tomato"});
                       setState(() {});
                     },
                     icon: Align(
@@ -144,136 +143,6 @@ class _HomeState extends State<Home> {
                   ),
 
                   SizedBox(height: 24),
-
-                  // SAMPLE IMAGES BUTTON
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      await Navigator.pushNamed(context, "/sample_images", arguments: {"crop":crop});
-                      setState(() {});
-                    },
-                    icon: Align(
-                      alignment: Alignment.centerLeft,
-                      child: ImageIcon(
-                        AssetImage("assets/image_gallery_icon.png"),
-                        size: buttonIconSize,
-                      ),
-                    ),
-                    label: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        appStrings!.sampleImages,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(buttonRadius)
-                            )
-                        ),
-                        primary: buttonColor,
-                        minimumSize: Size(buttonWidth, buttonHeight),
-                        textStyle: TextStyle(
-                            fontSize: buttonFontSize,
-                            fontWeight: FontWeight.bold)
-                    ),
-                  ),
-
-                  SizedBox(height: 24),
-
-                  // IMAGES LIBRARY BUTTON
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      await Navigator.pushNamed(context, "/images_library", arguments: {"crop":crop});
-                      setState(() {});
-                    },
-                    icon: Align(
-                      alignment: Alignment.centerLeft,
-                      child: ImageIcon(
-                        AssetImage("assets/captured_images_icon.png"),
-                        size: buttonIconSize,
-                      ),
-                    ),
-                    label: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        appStrings!.imageLibrary,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(buttonRadius)
-                            )
-                        ),
-                        primary: buttonColor,
-                        minimumSize: Size(buttonWidth, buttonHeight),
-                        textStyle: TextStyle(
-                            fontSize: buttonFontSize,
-                            fontWeight: FontWeight.bold
-                        )
-                    ),
-                  ),
-
-                  SizedBox(height: 24),
-
-                  // DISEASES LIBRARY BUTTON
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      await Navigator.pushNamed(context, "/diseases_library", arguments: {"crop":crop});
-                      setState(() {});
-                    },
-                    icon: Align(
-                      alignment: Alignment.centerLeft,
-                      child: ImageIcon(
-                        AssetImage("assets/diseases_library_icon.png"),
-                        size: buttonIconSize,
-                      ),
-                    ),
-                    label: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        appStrings!.diseasesLibrary,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(buttonRadius)
-                            )
-                        ),
-                        primary: buttonColor,
-                        minimumSize: Size(buttonWidth, buttonHeight),
-                        textStyle: TextStyle(
-                            fontSize: buttonFontSize,
-                            fontWeight: FontWeight.bold
-                        )
-                    ),
-                  ),
-
-                  SizedBox(height: 24),
-
-                  Spacer(),
-
-                  Padding(
-                    padding: EdgeInsets.all(18),
-                    child: TextButton(
-                      onPressed: () async {
-                        await Navigator.pushNamed(context, "/about");
-                        setState(() {});
-                      },
-                      child: Text(
-                          appStrings!.about,
-                          style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              color: buttonColor
-                          )
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

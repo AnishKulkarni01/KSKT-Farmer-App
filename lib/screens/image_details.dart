@@ -88,7 +88,7 @@ class _ImageDetailsState extends State<ImageDetails> {
     if(snapshot.hasData) {
 
       appStrings = snapshot.data["appStrings"];
-      DiseaseInfo diseaseInfo = snapshot.data["diseaseInfo"];
+      DiseaseInfo diseaseInfo = DiseaseInfo(diseaseID: "asd", diseaseNameEN: "asd", diseaseNameHI: "asd", diseaseDescriptionEN: "asd", diseaseDescriptionHI:"asd", diseaseImagePath: "asd");//snapshot.data["diseaseInfo"];
 
 
       String languageID = appStrings!.languageID;

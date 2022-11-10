@@ -118,7 +118,7 @@ class _ExamineLeafState extends State<ExamineLeaf> {
       // UPLOAD IMAGE TO FIREBASE STORAGE
       String fileURL;
 
-      fileURL = await uploadFile(File(imagePath));
+      fileURL = await uploadFile(File(imagePath),"maach");
       print(fileURL);
       print("File uploaded");
 
@@ -171,7 +171,7 @@ class _ExamineLeafState extends State<ExamineLeaf> {
 
 
   // UPLOAD IMAGE TO FIREBASE STORAGE
-  Future<String> uploadFile(File file) async {
+  Future<String> uploadFile(File file,String name) async {
     var downloadURL;
     try {
       UploadTask uploadTask;
@@ -179,7 +179,7 @@ class _ExamineLeafState extends State<ExamineLeaf> {
       FirebaseStorage firebaseStorage = FirebaseStorage.instance;
       Reference ref = firebaseStorage.ref()
           .child("processed_images")
-          .child("${DateTime
+          .child("${name}_${DateTime
           .now()
           .millisecondsSinceEpoch}.jpg");
 
@@ -209,6 +209,7 @@ class _ExamineLeafState extends State<ExamineLeaf> {
     var arguments = ModalRoute.of(context)!.settings.arguments as Map;
     String imagePath = arguments["filePath"];
     String crop = arguments["crop"];
+    String cropName=arguments["name"];
     String prediction;
     //print(crop);
     //print("here2");
@@ -218,42 +219,43 @@ class _ExamineLeafState extends State<ExamineLeaf> {
 
     // IF THERE IS INTERNET CONNECTION
     // UPLOAD IMAGE TO FIREBASE STORAGE
-    if(connectivityResult != ConnectivityResult.none) {
-      print("Internet connectivity available");
-      // GET ML SERVER LINK FROM FIREBASE RTDB
-      DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("new_server_url");
-      var serverURLString;
-      await dbRef.get().then((snapshot) => serverURLString = snapshot.value);
-      var serverURL = Uri.parse(serverURLString);
-      // var serverURL = Uri.parse("https://crop-doc-xpg4b2fkjq-el.a.run.app");
-
-      Map<String, dynamic> result = await predictClassOnline(serverURL, imagePath,crop);
-      if(result["statusCode"] != 200) {
-
-        print("Server unavailable");
-
-        prediction = "unknown";
-
-      }
-      else
-        prediction = result["prediction"];
-      imagePath = result["imagePath"];
-      storeDiseaseInfo(imagePath, prediction,crop);
-    }
-    else {
-      print("No internet connectivity");
-      print("Predicting class using local model");
-
-      prediction = "unknown";
-    }
-
+    // if(connectivityResult != ConnectivityResult.none) {
+    //   print("Internet connectivity available");
+    //   // GET ML SERVER LINK FROM FIREBASE RTDB
+    //   DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("new_server_url");
+    //   var serverURLString;
+    //   await dbRef.get().then((snapshot) => serverURLString = snapshot.value);
+    //   var serverURL = Uri.parse(serverURLString);
+    //   // var serverURL = Uri.parse("https://crop-doc-xpg4b2fkjq-el.a.run.app");
+    //
+    //   Map<String, dynamic> result = await predictClassOnline(serverURL, imagePath,crop);
+    //   if(result["statusCode"] != 200) {
+    //
+    //     print("Server unavailable");
+    //
+    //     prediction = "unknown";
+    //
+    //   }
+    //   else
+    //     prediction = result["prediction"];
+    //   imagePath = result["imagePath"];
+    //   storeDiseaseInfo(imagePath, prediction,crop);
+    // }
+    // else {
+    //   print("No internet connectivity");
+    //   print("Predicting class using local model");
+    //
+    //   prediction = "unknown";
+    // }
+    imagePath=await uploadFile(File(imagePath),cropName);
     print(imagePath);
-    //prediction = "disease 07";
+    print("image uploaded");
+    prediction = "disease 07";
     arguments = {
       "filePath": imagePath,
       "diseaseID": prediction
     };
-    Navigator.pushReplacementNamed(context, "/image_details", arguments: arguments);
+    Navigator.pushReplacementNamed(context, "/home", arguments: arguments);
 
     LanguageInitializer languageInitializer = LanguageInitializer();
     AppStrings appStrings = await languageInitializer.initLanguage();
@@ -297,7 +299,7 @@ class _ExamineLeafState extends State<ExamineLeaf> {
       child = Scaffold(
         body: Center(
           child: Text(
-            "Predicting diseases...",
+            "Uploading Image...",
             style: TextStyle(
               fontSize: 17,
             ),

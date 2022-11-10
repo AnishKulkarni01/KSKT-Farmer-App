@@ -62,8 +62,8 @@ class _FruitState extends State<Fruit> {
       appStrings = snapshot.data["appStrings"];
       Box appStates = snapshot.data["appStates"];
 
-      String surveyLinkEnglish = appStates.get("surveyLinkEnglish");
-      String surveyLinkHindi = appStates.get("surveyLinkHindi");
+      String surveyLinkEnglish = "asd";//appStates.get("surveyLinkEnglish");
+      String surveyLinkHindi = "asdasd";//appStates.get("surveyLinkHindi");
 
       child = Scaffold(
         backgroundColor: AppColor.backgroundColorLight,

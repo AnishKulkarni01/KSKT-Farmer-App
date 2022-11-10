@@ -230,49 +230,49 @@ class _SplashScreen extends State<SplashScreen> {
     // IF THERE IS INTERNET CONNECTION
     // FETCH DATA FROM FIREBASE
     if(connectivityResult != ConnectivityResult.none) {
-
-      // CHECK WHEN THE DATABASE WAS LAST UPDATED
-      await Firebase.initializeApp();
-      DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("last_updated");
-      var value;
-      await dbRef.get().then((snapshot) => value = snapshot.value);
-      var lastUpdated = appStates.get("last_updated");
-
-
-      setState(() {
-        progress = 3;
-        print("${currentTask[progress]} - $progress");
-      });
-      // print("Last updated: $lastUpdated");
-      // print("Current updated: $value");
-
-      if(lastUpdated == null || lastUpdated < value) {
-
-        appStates.put("last_updated", value);
-
-        setState(() {
-          progress = 4;
-          print("${currentTask[progress]} - $progress");
-        });
-        // GET PLANT NAMES AND TYPES FROM FIREBASE RTDB
-        await fetchPlantInfo();
-
-        // GET INFO ABOUT APP
-
-        dbRef = FirebaseDatabase.instance.reference().child("about");
-        var aboutTexts;
-        await dbRef.get().then((snapshot) => aboutTexts = snapshot.value);
-        for(String aboutText in aboutTexts.keys) {
-          appStates.put(aboutText, aboutTexts[aboutText]);
-        }
-        setState(() {
-          progress = 11;
-          print("${currentTask[progress]} - $progress");
-        });
-      }
-
-      if(firstLaunch)
-        appStates.put("firstLaunch", false);
+    //
+    //   // CHECK WHEN THE DATABASE WAS LAST UPDATED
+       await Firebase.initializeApp();
+    //   DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("last_updated");
+    //   var value;
+    //   await dbRef.get().then((snapshot) => value = snapshot.value);
+    //   var lastUpdated = appStates.get("last_updated");
+    //
+    //
+    //   setState(() {
+    //     progress = 3;
+    //     print("${currentTask[progress]} - $progress");
+    //   });
+    //   // print("Last updated: $lastUpdated");
+    //   // print("Current updated: $value");
+    //
+    //   if(lastUpdated == null || lastUpdated < value) {
+    //
+    //     appStates.put("last_updated", value);
+    //
+    //     setState(() {
+    //       progress = 4;
+    //       print("${currentTask[progress]} - $progress");
+    //     });
+    //     // GET PLANT NAMES AND TYPES FROM FIREBASE RTDB
+    //     await fetchPlantInfo();
+    //
+    //     // GET INFO ABOUT APP
+    //
+    //     dbRef = FirebaseDatabase.instance.reference().child("about");
+    //     var aboutTexts;
+    //     await dbRef.get().then((snapshot) => aboutTexts = snapshot.value);
+    //     for(String aboutText in aboutTexts.keys) {
+    //       appStates.put(aboutText, aboutTexts[aboutText]);
+    //     }
+    //     setState(() {
+    //       progress = 11;
+    //       print("${currentTask[progress]} - $progress");
+    //     });
+    //   }
+    //
+    //   if(firstLaunch)
+    //     appStates.put("firstLaunch", false);
     }
 
     setState(() {
@@ -330,7 +330,7 @@ class _SplashScreen extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _init().then((response) {
-        Navigator.pushReplacementNamed(context, "/fruits");
+        Navigator.pushReplacementNamed(context, "/home");
         return response;
       }),
       builder: _buildFunction

@@ -7,13 +7,15 @@ import 'package:crop_doctor/classes/stringsEN.dart';
 import 'package:crop_doctor/classes/stringsHI.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+TextEditingController _cropName = new TextEditingController();
 class CaptureImage extends StatefulWidget {
+
   @override
   _CaptureImageState createState() => _CaptureImageState();
 }
 
 class _CaptureImageState extends State<CaptureImage> {
+
 
   Image placeholderImage = Image.asset("assets/placeholder_image.png");
   Image? loadedImage;
@@ -107,6 +109,22 @@ class _CaptureImageState extends State<CaptureImage> {
 
 
             SizedBox(height: 20),
+
+            //Text input
+            Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 18),
+                child: TextField(
+                  controller: _cropName,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter your crop name',
+                  ),
+                ))
+                ),
+            SizedBox(height: 20),
+
             // RE-TAKE IMAGE
             Expanded(
               flex: 1,
@@ -135,7 +153,7 @@ class _CaptureImageState extends State<CaptureImage> {
               flex: 1,
               child: ElevatedButton(
                 onPressed: () async {
-                  await Navigator.pushReplacementNamed(context, "/examine_leaf", arguments: {"filePath": filePath!,"crop":crop});
+                  await Navigator.pushReplacementNamed(context, "/examine_leaf", arguments: {"filePath": filePath!,"crop":crop, "name":_cropName.text});
                 },
                 style: ElevatedButton.styleFrom(
                     primary: examineLeafButtonColor,
