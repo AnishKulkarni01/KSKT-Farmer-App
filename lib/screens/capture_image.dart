@@ -62,26 +62,26 @@ class _CaptureImageState extends State<CaptureImage> {
 
       child = Scaffold(
 
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            if(appStrings!.languageID == "EN") {
-              languageInitializer.setLanguage("HI");
-              setLanguage("HI");
-            }
-            else {
-              languageInitializer.setLanguage("EN");
-              setLanguage("EN");
-            }
-          },
-          label: Text(
-            appStrings!.otherLanguage,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 17
-            ),
-          ),
-          backgroundColor: AppColor.themeColorLight,
-        ),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   onPressed: () {
+        //     if(appStrings!.languageID == "EN") {
+        //       languageInitializer.setLanguage("HI");
+        //       setLanguage("HI");
+        //     }
+        //     else {
+        //       languageInitializer.setLanguage("EN");
+        //       setLanguage("EN");
+        //     }
+        //   },
+        //   label: Text(
+        //     appStrings!.otherLanguage,
+        //     style: TextStyle(
+        //         fontWeight: FontWeight.bold,
+        //         fontSize: 17
+        //     ),
+        //   ),
+        //   backgroundColor: AppColor.themeColorLight,
+        // ),
 
         appBar: AppBar(
           leading: IconButton(
@@ -160,10 +160,10 @@ class _CaptureImageState extends State<CaptureImage> {
                     fixedSize: Size(180, 42)
                 ),
                 child: Text(
-                  appStrings!.examineLeaf,
+                  "Submit!",
                   style: TextStyle(
                       fontSize: 17,
-                      fontWeight: FontWeight.bold
+                      // fontWeight: FontWeight.bold
                   ),
                 ),
               ),

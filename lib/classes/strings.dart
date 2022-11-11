@@ -10,7 +10,7 @@ class AppStrings {
   String about = "About";
   String retakeImage = "Re-take";
   String selectDifferentImage = "Select an Image";
-  String examineLeaf = "Examine Leaf";
+  String examineLeaf = "Submit";
   String detectingLeaves = "Detecting Leaves";
   String detectingDiseases = "Detecting Diseases";
   String markingAreas = "Marking Spots";
