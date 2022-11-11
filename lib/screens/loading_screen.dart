@@ -330,7 +330,7 @@ class _SplashScreen extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _init().then((response) {
-        Navigator.pushReplacementNamed(context, "/home");
+        Navigator.pushReplacementNamed(context, "/sign_in");
         return response;
       }),
       builder: _buildFunction
